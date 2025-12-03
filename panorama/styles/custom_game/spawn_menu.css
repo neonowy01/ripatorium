@@ -1,0 +1,90 @@
+.RootPanel {
+	width:100%;
+	height:100%;
+	flow-children:down;
+	color:orange;
+	font-size:50px;
+}
+
+.HeaderPanel {
+	width:100%;
+	height:10%;
+	background-color:red;
+}
+
+.HeaderPanel Label {
+	font-size:90px;
+	font-weight:bold;
+}
+
+.ContentPanel {
+	flow-children:right;
+	width:100%;
+	height:90%;
+}
+
+.SpawnerPanel {
+	flow-children:down;
+}
+
+.SpawnerPanelHeader {
+	font-size:60px;
+	width:100%;
+}
+
+.SpawnerPanelHeader > Label {
+	background-color:red;
+	width:100%;
+	padding:10px;
+}
+
+.ListPanel {
+	flow-children:down;
+	width:100%;
+	height:100%;
+}
+
+.ListPanel > .ListItem {
+	width:100%;
+}
+
+.ListPanel > .ListItem:hover {
+	background-color:purple;
+}
+
+.ListPanel > .ListItem > Label  {
+	padding:2px;
+}
+.SpawnerPanel {
+	width:60%;
+	height:100%;
+	background-color: green;
+}
+
+.PreviewPanel {
+	width:40%;
+	height:100%;
+	background-color: cyan;
+	flow-children:down;
+}
+
+.PreviewPanel > .PreviewTitle {
+	font-size:60px;
+	font-weight:bold;
+	text-align:center;
+	width:100%;
+	height:6%;
+}
+
+.PreviewPanel > .PreviewImagePanel {
+	background-color:pink;
+	width:100%;
+	height:94%;
+}
+
+.PreviewImagePanel Image {
+	vertical-align: center;
+	horizontal-align: center;
+	height:50%;
+	padding:10%;
+}

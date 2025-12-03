@@ -1,0 +1,68 @@
+<root>
+	<!--<scripts>
+		<include src="file://{resources}/scripts/custom_game/spawn_menu.js" />
+	</scripts>-->
+	<styles>
+		<include src="s2r://panorama/styles/base_styles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/spawn_menu.css" />
+	</styles>
+	<ClientUIDialogPanel class="RootPanel">
+		<Panel class="HeaderPanel">
+			<Label text="Enemy Spawner"/>
+		</Panel>
+		<Panel class="ContentPanel">
+			<Panel class="SpawnerPanel">
+				<Panel class="SpawnerPanelHeader">
+					<Label text="Arena Capacity: 0/25"/>
+				</Panel>
+				<Panel class="ListPanel">
+					<Panel class="ListItem Headcrab">
+						<Label text="Headcrab"/>
+					</Panel>
+					<Panel class="ListItem ArmoredHeadcrab">
+						<Label text="Armored Headcrab"/>
+					</Panel>
+					<Panel class="ListItem PoisonHeadcrab">
+						<Label text="Poison Headcrab"/>
+					</Panel>
+					<Panel class="ListItem Manhack">
+						<Label text="Manhack"/>
+					</Panel>
+					<Panel class="ListItem Zombie">
+						<Label text="Zombie"/>
+					</Panel>
+					<Panel class="ListItem ArmoredZombie">
+						<Label text="Armored Zombie"/>
+					</Panel>
+					<Panel class="ListItem Antlion">
+						<Label text="Antlion"/>
+					</Panel>
+					<Panel class="ListItem AntlionWorker">
+						<Label text="Antlion Worker"/>
+					</Panel>
+					<Panel class="ListItem CombineGrunt">
+						<Label text="Combine Grunt"/>
+					</Panel>
+					<Panel class="ListItem CombineOrdinal">
+						<Label text="Combine Ordinal"/>
+					</Panel>
+					<Panel class="ListItem CombineSuppressor">
+						<Label text="Combine Suppressor"/>
+					</Panel>
+					<Panel class="ListItem Reviver">
+						<Label text="Reviver"/>
+					</Panel>
+					<Panel class="ListItem Jeff">
+						<Label text="Jeff"/>
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="PreviewPanel">
+				<Label class="PreviewTitle" text="Preview Title"/>
+				<Panel class="PreviewImagePanel">
+					<Image src="file://{images}/custom_game/placeholder.png"/>
+				</Panel>
+			</Panel>
+		</Panel>
+	</ClientUIDialogPanel>
+</root>
