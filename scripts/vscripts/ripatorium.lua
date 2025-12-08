@@ -1,7 +1,44 @@
+require 'misc'
+local json = require 'json'
+
+PanoramaValues = {} 
+a = "Headcrab"
+PanoramaValues[a] = 0
+b = "ArmoredHeadcrab"
+PanoramaValues[b] = 0
+c = "PoisonHeadcrab"
+PanoramaValues[c] = 0
+d = "Manhack"
+PanoramaValues[d] = 0
+e = "Zombie"
+PanoramaValues[e] = 0
+f = "ArmoredZombie"
+PanoramaValues[f] = 0
+g = "Antlion"
+PanoramaValues[g] = 0
+h = "AntlionWorker"
+PanoramaValues[h] = 0
+i = "CombineGrunt"
+PanoramaValues[i] = 0
+j = "CombineCharger"
+PanoramaValues[j] = 0
+k = "CombineOrdinal"
+PanoramaValues[k] = 0
+l = "CombineSuppressor"
+PanoramaValues[l] = 0
+m = "Reviver"
+PanoramaValues[m] = 0
+n = "Jeff"
+PanoramaValues[n] = 0
+
 function Activate() 
     player = Entities:GetLocalPlayer()
     spawnpoints = Entities:FindAllByName("spawn_points")
     --thisEntity:SetThink(function() SpawnNPC("grunt") return 5 end, "TestThink", 1)
+    thisEntity:SetThink(function() 
+        SendToConsole("@panorama_dispatch_event AddStyle(\'"..json.encode(PanoramaValues).." \')") --sending stuff to panorama ui
+        return 0.1 
+    end, "PanoramaThink",0 )
 end 
 
 swTemplates = { --NPC templates with specified unique delays
