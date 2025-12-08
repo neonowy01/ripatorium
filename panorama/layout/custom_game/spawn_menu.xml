@@ -15,60 +15,60 @@
 				<Panel class="SpawnerPanelHeader">
 					<Label text="Arena Capacity: 0/25"/>
 				</Panel>
-				<Panel class="ListPanel">
-					<Panel class="ListItem Headcrab" onmouseover="HoverSound()">
+				<Panel id="ListPanel" class="ListPanel">
+					<Panel id="Headcrab" onmouseover="HoverSound()" onactivate="Select('Headcrab');">
 						<Label text="Headcrab"/>
 						<Label class="AmountCounters" id="HeadcrabValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem ArmoredHeadcrab" onmouseover="HoverSound()">
+					<Panel id="ArmoredHeadcrab" onmouseover="HoverSound()" onactivate="Select('ArmoredHeadcrab');">
 						<Label text="Armored Headcrab"/>
 						<Label class="AmountCounters" id="ArmoredHeadcrabValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem PoisonHeadcrab" onmouseover="HoverSound()">
+					<Panel id="PoisonHeadcrab" onmouseover="HoverSound()" onactivate="Select('PoisonHeadcrab');">
 						<Label text="Poison Headcrab"/>
 						<Label class="AmountCounters" id="PoisonHeadcrabValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem Manhack" onmouseover="HoverSound()">
+					<Panel id="Manhack" onmouseover="HoverSound()" onactivate="Select('Manhack');">
 						<Label text="Manhack"/>
 						<Label class="AmountCounters" id="ManhackValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem Zombie" onmouseover="HoverSound()">
+					<Panel id="Zombie" onmouseover="HoverSound()" onactivate="Select('Zombie');">
 						<Label text="Zombie"/>
 						<Label class="AmountCounters" id="ZombieValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem ArmoredZombie" onmouseover="HoverSound()">
+					<Panel id="ArmoredZombie" onmouseover="HoverSound()" onactivate="Select('ArmoredZombie');">
 						<Label text="Armored Zombie"/>
 						<Label class="AmountCounters" id="ArmoredZombieValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem Antlion" onmouseover="HoverSound()">
+					<Panel id="Antlion" onmouseover="HoverSound()" onactivate="Select('Antlion');">
 						<Label text="Antlion"/>
 						<Label class="AmountCounters" id="AntlionValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem AntlionWorker" onmouseover="HoverSound()">
+					<Panel id="AntlionWorker" onmouseover="HoverSound()" onactivate="Select('AntlionWorker');">
 						<Label text="Antlion Worker"/>
 						<Label class="AmountCounters" id="AntlionWorkerValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem CombineGrunt" onmouseover="HoverSound()">
+					<Panel id="CombineGrunt" onmouseover="HoverSound()" onactivate="Select('CombineGrunt');">
 						<Label text="Combine Grunt"/>
 						<Label class="AmountCounters" id="GruntValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem CombineCharger" onmouseover="HoverSound()">
+					<Panel id="CombineCharger" onmouseover="HoverSound()" onactivate="Select('CombineCharger');">
 						<Label text="Combine Charger"/>
 						<Label class="AmountCounters" id="ChargerValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem CombineOrdinal" onmouseover="HoverSound()">
+					<Panel id="CombineOrdinal" onmouseover="HoverSound()" onactivate="Select('CombineOrdinal');">
 						<Label text="Combine Ordinal"/>
 						<Label class="AmountCounters" id="OrdinalValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem CombineSuppressor" onmouseover="HoverSound()">
+					<Panel id="CombineSuppressor" onmouseover="HoverSound()" onactivate="Select('CombineSuppressor');">
 						<Label text="Combine Suppressor"/>
 						<Label class="AmountCounters" id="SuppressorValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem Reviver" onmouseover="HoverSound()">
+					<Panel id="Reviver" onmouseover="HoverSound()" onactivate="Select('Reviver');">
 						<Label text="Reviver"/>
 						<Label class="AmountCounters" id="ReviverValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem Jeff" onmouseover="HoverSound()">
+					<Panel id="Jeff" onmouseover="HoverSound()" onactivate="Select('Jeff');">
 						<Label text="Jeff"/>
 						<Label class="AmountCounters" id="JeffValue" text="0"/>
 					</Panel>
