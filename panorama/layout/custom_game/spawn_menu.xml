@@ -1,7 +1,7 @@
 <root>
-	<!--<scripts>
+	<scripts>
 		<include src="file://{resources}/scripts/custom_game/spawn_menu.js" />
-	</scripts>-->
+	</scripts>
 	<styles>
 		<include src="s2r://panorama/styles/base_styles.vcss_c" />
 		<include src="file://{resources}/styles/custom_game/spawn_menu.css" />
@@ -16,44 +16,61 @@
 					<Label text="Arena Capacity: 0/25"/>
 				</Panel>
 				<Panel class="ListPanel">
-					<Panel class="ListItem Headcrab">
+					<Panel class="ListItem Headcrab" onmouseover="HoverSound()">
 						<Label text="Headcrab"/>
+						<Label class="AmountCounters" id="HeadcrabValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem ArmoredHeadcrab">
+					<Panel class="ListItem ArmoredHeadcrab" onmouseover="HoverSound()">
 						<Label text="Armored Headcrab"/>
+						<Label class="AmountCounters" id="ArmoredHeadcrabValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem PoisonHeadcrab">
+					<Panel class="ListItem PoisonHeadcrab" onmouseover="HoverSound()">
 						<Label text="Poison Headcrab"/>
+						<Label class="AmountCounters" id="PoisonHeadcrabValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem Manhack">
+					<Panel class="ListItem Manhack" onmouseover="HoverSound()">
 						<Label text="Manhack"/>
+						<Label class="AmountCounters" id="ManhackValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem Zombie">
+					<Panel class="ListItem Zombie" onmouseover="HoverSound()">
 						<Label text="Zombie"/>
+						<Label class="AmountCounters" id="ZombieValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem ArmoredZombie">
+					<Panel class="ListItem ArmoredZombie" onmouseover="HoverSound()">
 						<Label text="Armored Zombie"/>
+						<Label class="AmountCounters" id="ArmoredZombieValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem Antlion">
+					<Panel class="ListItem Antlion" onmouseover="HoverSound()">
 						<Label text="Antlion"/>
+						<Label class="AmountCounters" id="AntlionValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem AntlionWorker">
+					<Panel class="ListItem AntlionWorker" onmouseover="HoverSound()">
 						<Label text="Antlion Worker"/>
+						<Label class="AmountCounters" id="AntlionWorkerValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem CombineGrunt">
+					<Panel class="ListItem CombineGrunt" onmouseover="HoverSound()">
 						<Label text="Combine Grunt"/>
+						<Label class="AmountCounters" id="GruntValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem CombineOrdinal">
+					<Panel class="ListItem CombineCharger" onmouseover="HoverSound()">
+						<Label text="Combine Charger"/>
+						<Label class="AmountCounters" id="ChargerValue" text="0"/>
+					</Panel>
+					<Panel class="ListItem CombineOrdinal" onmouseover="HoverSound()">
 						<Label text="Combine Ordinal"/>
+						<Label class="AmountCounters" id="OrdinalValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem CombineSuppressor">
+					<Panel class="ListItem CombineSuppressor" onmouseover="HoverSound()">
 						<Label text="Combine Suppressor"/>
+						<Label class="AmountCounters" id="SuppressorValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem Reviver">
+					<Panel class="ListItem Reviver" onmouseover="HoverSound()">
 						<Label text="Reviver"/>
+						<Label class="AmountCounters" id="ReviverValue" text="0"/>
 					</Panel>
-					<Panel class="ListItem Jeff">
+					<Panel class="ListItem Jeff" onmouseover="HoverSound()">
 						<Label text="Jeff"/>
+						<Label class="AmountCounters" id="JeffValue" text="0"/>
 					</Panel>
 				</Panel>
 			</Panel>
@@ -61,6 +78,17 @@
 				<Label class="PreviewTitle" text="Preview Title"/>
 				<Panel class="PreviewImagePanel">
 					<Image src="file://{images}/custom_game/placeholder.png"/>
+				</Panel>
+				<Panel class="EditButtonsPanel">
+					<Panel class="EditButton Subtract" onmouseover="HoverSound()">
+						<Label text="-"/>
+					</Panel>
+					<Panel class="PreviewCounterPanel">
+						<Label id="PreviewNpcAmount" text="0"/>
+					</Panel>
+					<Panel class="EditButton Add" onmouseover="HoverSound()">
+						<Label text="+"/>
+					</Panel>
 				</Panel>
 			</Panel>
 		</Panel>
