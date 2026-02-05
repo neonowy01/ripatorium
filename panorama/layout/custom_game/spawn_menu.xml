@@ -15,78 +15,23 @@
 				<Panel class="SpawnerPanelHeader">
 					<Label text="Arena Capacity: 0/25"/>
 				</Panel>
-				<Panel id="ListPanel" class="ListPanel">
-					<Panel id="Headcrab" onmouseover="HoverSound()" onactivate="Select('Headcrab');">
-						<Label text="Headcrab"/>
-						<Label class="AmountCounters" id="HeadcrabValue" text="0"/>
-					</Panel>
-					<Panel id="ArmoredHeadcrab" onmouseover="HoverSound()" onactivate="Select('ArmoredHeadcrab');">
-						<Label text="Armored Headcrab"/>
-						<Label class="AmountCounters" id="ArmoredHeadcrabValue" text="0"/>
-					</Panel>
-					<Panel id="PoisonHeadcrab" onmouseover="HoverSound()" onactivate="Select('PoisonHeadcrab');">
-						<Label text="Poison Headcrab"/>
-						<Label class="AmountCounters" id="PoisonHeadcrabValue" text="0"/>
-					</Panel>
-					<Panel id="Manhack" onmouseover="HoverSound()" onactivate="Select('Manhack');">
-						<Label text="Manhack"/>
-						<Label class="AmountCounters" id="ManhackValue" text="0"/>
-					</Panel>
-					<Panel id="Zombie" onmouseover="HoverSound()" onactivate="Select('Zombie');">
-						<Label text="Zombie"/>
-						<Label class="AmountCounters" id="ZombieValue" text="0"/>
-					</Panel>
-					<Panel id="ArmoredZombie" onmouseover="HoverSound()" onactivate="Select('ArmoredZombie');">
-						<Label text="Armored Zombie"/>
-						<Label class="AmountCounters" id="ArmoredZombieValue" text="0"/>
-					</Panel>
-					<Panel id="Antlion" onmouseover="HoverSound()" onactivate="Select('Antlion');">
-						<Label text="Antlion"/>
-						<Label class="AmountCounters" id="AntlionValue" text="0"/>
-					</Panel>
-					<Panel id="AntlionWorker" onmouseover="HoverSound()" onactivate="Select('AntlionWorker');">
-						<Label text="Antlion Worker"/>
-						<Label class="AmountCounters" id="AntlionWorkerValue" text="0"/>
-					</Panel>
-					<Panel id="CombineGrunt" onmouseover="HoverSound()" onactivate="Select('CombineGrunt');">
-						<Label text="Combine Grunt"/>
-						<Label class="AmountCounters" id="GruntValue" text="0"/>
-					</Panel>
-					<Panel id="CombineCharger" onmouseover="HoverSound()" onactivate="Select('CombineCharger');">
-						<Label text="Combine Charger"/>
-						<Label class="AmountCounters" id="ChargerValue" text="0"/>
-					</Panel>
-					<Panel id="CombineOrdinal" onmouseover="HoverSound()" onactivate="Select('CombineOrdinal');">
-						<Label text="Combine Ordinal"/>
-						<Label class="AmountCounters" id="OrdinalValue" text="0"/>
-					</Panel>
-					<Panel id="CombineSuppressor" onmouseover="HoverSound()" onactivate="Select('CombineSuppressor');">
-						<Label text="Combine Suppressor"/>
-						<Label class="AmountCounters" id="SuppressorValue" text="0"/>
-					</Panel>
-					<Panel id="Reviver" onmouseover="HoverSound()" onactivate="Select('Reviver');">
-						<Label text="Reviver"/>
-						<Label class="AmountCounters" id="ReviverValue" text="0"/>
-					</Panel>
-					<Panel id="Jeff" onmouseover="HoverSound()" onactivate="Select('Jeff');">
-						<Label text="Jeff"/>
-						<Label class="AmountCounters" id="JeffValue" text="0"/>
-					</Panel>
+				<Panel id="EmptyPanel" class="EmptyPanel">
+					
 				</Panel>
 			</Panel>
 			<Panel class="PreviewPanel">
-				<Label class="PreviewTitle" text="Preview Title"/>
+				<Label class="PreviewTitle" text="Preview Title" id="PreviewTitle"/>
 				<Panel class="PreviewImagePanel">
 					<Image src="file://{images}/custom_game/placeholder.png"/>
 				</Panel>
 				<Panel class="EditButtonsPanel">
-					<Panel class="EditButton Subtract" onmouseover="HoverSound()">
+					<Panel class="EditButton Subtract" onmouseover="HoverSound()" onactivate="Subtract()">
 						<Label text="-"/>
 					</Panel>
 					<Panel class="PreviewCounterPanel">
 						<Label id="PreviewNpcAmount" text="0"/>
 					</Panel>
-					<Panel class="EditButton Add" onmouseover="HoverSound()">
+					<Panel class="EditButton Add" onmouseover="HoverSound()" onactivate="Add()">
 						<Label text="+"/>
 					</Panel>
 				</Panel>

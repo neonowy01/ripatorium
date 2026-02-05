@@ -1,0 +1,41 @@
+<root>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/spawn_menu_01.js" />
+	</scripts>
+	<styles>
+		<include src="s2r://panorama/styles/base_styles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/spawn_menu.css" />
+	</styles>
+	<ClientUIDialogPanel class="RootPanel">
+		<Panel id="ListPanel" class="ListPanel">
+			<Panel id="Headcrab" onmouseover="HoverSound()" onactivate="Select('Headcrab');">
+				<Label text="Headcrab"/>
+				<Label class="AmountCounters" id="HeadcrabValue" text="0"/>
+			</Panel>
+			<Panel id="ArmoredHeadcrab" onmouseover="HoverSound()" onactivate="Select('ArmoredHeadcrab');">
+				<Label text="Armored Headcrab"/>
+				<Label class="AmountCounters" id="ArmoredHeadcrabValue" text="0"/>
+			</Panel>
+			<Panel id="PoisonHeadcrab" onmouseover="HoverSound()" onactivate="Select('PoisonHeadcrab');">
+				<Label text="Poison Headcrab"/>
+				<Label class="AmountCounters" id="PoisonHeadcrabValue" text="0"/>
+			</Panel>
+			<Panel id="Manhack" onmouseover="HoverSound()" onactivate="Select('Manhack');">
+				<Label text="Manhack"/>
+				<Label class="AmountCounters" id="ManhackValue" text="0"/>
+			</Panel>
+			<Panel id="Zombie" onmouseover="HoverSound()" onactivate="Select('Zombie');">
+				<Label text="Zombie"/>
+				<Label class="AmountCounters" id="ZombieValue" text="0"/>
+			</Panel>
+			<Panel id="ArmoredZombie" onmouseover="HoverSound()" onactivate="Select('ArmoredZombie');">
+				<Label text="Armored Zombie"/>
+				<Label class="AmountCounters" id="ArmoredZombieValue" text="0"/>
+			</Panel>
+			<Panel id="Antlion" onmouseover="HoverSound()" onactivate="Select('Antlion');">
+				<Label text="Antlion"/>
+				<Label class="AmountCounters" id="AntlionValue" text="0"/>
+			</Panel>
+		</Panel>
+	</ClientUIDialogPanel>
+</root>

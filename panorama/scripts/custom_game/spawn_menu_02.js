@@ -1,3 +1,4 @@
+var SelectedNPC = false
 function HoverSound()
 {
      $.DispatchEvent("ClientUI_FireOutput", 0);
@@ -8,20 +9,7 @@ function ClickSound()
      $.DispatchEvent("ClientUI_FireOutput", 1);
 }
 
-function Add()
-{
-     $.DispatchEvent("ClientUI_FireOutput", 2);
-     ClickSound()
-}
-
-function Subtract()
-{
-     $.DispatchEvent("ClientUI_FireOutput", 3);
-     ClickSound()
-}
-
-
-/*function Select(enemy)
+function Select(enemy)
 {
      SelectedNPC = enemy
      //Yeah I don't fucking know how to get the panels children in this shit
@@ -44,64 +32,59 @@ function Subtract()
      Rework to be managed by Vscript-Panorama link
      */
 
-     /*
+
      switch(enemy)
      {
-          case "Headcrab":
+          case "AntlionWorker":
                $.DispatchEvent("ClientUI_FireOutput", 2);
                break;
-          case "ArmoredHeadcrab":
+          case "CombineGrunt":
                $.DispatchEvent("ClientUI_FireOutput", 3);
                break;
-          case "PoisonHeadcrab":
+          case "CombineCharger":
                $.DispatchEvent("ClientUI_FireOutput", 4);
                break;
-          case "Manhack":
+          case "CombineOrdinal":
                $.DispatchEvent("ClientUI_FireOutput", 5);
                break;
-          case "Zombie":
+          case "CombineSuppressor":
                $.DispatchEvent("ClientUI_FireOutput", 6);
                break;
-          case "ArmoredZombie":
+          case "Reviver":
                $.DispatchEvent("ClientUI_FireOutput", 7);
                break;
-          case "Antlion":
+          case "Jeff":
                $.DispatchEvent("ClientUI_FireOutput", 8);
                break;
-          case "AntlionWorker":
-               $.DispatchEvent("ClientUI_FireOutput", 9);
-               break;
-          case "CombineGrunt":
-               $.DispatchEvent("ClientUI_FireOutput", 10);
-               break;
-          case "CombineCharger":
-               $.DispatchEvent("ClientUI_FireOutput", 11);
-               break;
-          case "CombineOrdinal":
-               $.DispatchEvent("ClientUI_FireOutput", 12);
-               break;
-          case "CombineSuppressor":
-               $.DispatchEvent("ClientUI_FireOutput", 13);
-               break;
-          case "Reviver":
-               $.DispatchEvent("ClientUI_FireOutput", 14);
-               break;
-          case "Jeff":
-               $.DispatchEvent("ClientUI_FireOutput", 15);
+          default:
                break;
      }
 }
-
-Select("Headcrab")*/
 
 function DecodeCommand(command)
 {
    var decoded = JSON.parse(command);
 
-   var PreviewTitle = $("#PreviewTitle")
-   PreviewTitle.text = decoded["SelectedEnemy"]
-   var PreviewNpcAmount = $("#PreviewNpcAmount")
-   PreviewNpcAmount.text = decoded["SelectedEnemyAmount"]
+   var AntlionWorkerValue = $("#AntlionWorkerValue")
+   AntlionWorkerValue.text = decoded["AntlionWorker"]
+   
+   var GruntValue = $("#GruntValue")
+   GruntValue.text = decoded["CombineGrunt"]
+
+   var ChargerValue = $("#ChargerValue")
+   ChargerValue.text = decoded["CombineCharger"]
+
+   var OrdinalValue = $("#OrdinalValue")
+   OrdinalValue.text = decoded["CombineOrdinal"]
+
+   var SuppressorValue = $("#SuppressorValue")
+   SuppressorValue.text = decoded["CombineSuppressor"]
+
+   var ReviverValue = $("#ReviverValue")
+   ReviverValue.text = decoded["Reviver"]
+
+   var JeffValue = $("#JeffValue")
+   JeffValue.text = decoded["Jeff"]
    
 }
 

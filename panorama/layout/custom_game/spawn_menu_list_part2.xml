@@ -1,0 +1,41 @@
+<root>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/spawn_menu_02.js" />
+	</scripts>
+	<styles>
+		<include src="s2r://panorama/styles/base_styles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/spawn_menu.css" />
+	</styles>
+	<ClientUIDialogPanel class="RootPanel">
+		<Panel id="ListPanel" class="ListPanel">
+			<Panel id="AntlionWorker" onmouseover="HoverSound()" onactivate="Select('AntlionWorker');">
+				<Label text="Antlion Worker"/>
+				<Label class="AmountCounters" id="AntlionWorkerValue" text="0"/>
+			</Panel>
+			<Panel id="CombineGrunt" onmouseover="HoverSound()" onactivate="Select('CombineGrunt');">
+				<Label text="Combine Grunt"/>
+				<Label class="AmountCounters" id="GruntValue" text="0"/>
+			</Panel>
+			<Panel id="CombineCharger" onmouseover="HoverSound()" onactivate="Select('CombineCharger');">
+				<Label text="Combine Charger"/>
+				<Label class="AmountCounters" id="ChargerValue" text="0"/>
+			</Panel>
+			<Panel id="CombineOrdinal" onmouseover="HoverSound()" onactivate="Select('CombineOrdinal');">
+				<Label text="Combine Ordinal"/>
+				<Label class="AmountCounters" id="OrdinalValue" text="0"/>
+			</Panel>
+			<Panel id="CombineSuppressor" onmouseover="HoverSound()" onactivate="Select('CombineSuppressor');">
+				<Label text="Combine Suppressor"/>
+				<Label class="AmountCounters" id="SuppressorValue" text="0"/>
+			</Panel>
+			<Panel id="Reviver" onmouseover="HoverSound()" onactivate="Select('Reviver');">
+				<Label text="Reviver"/>
+				<Label class="AmountCounters" id="ReviverValue" text="0"/>
+			</Panel>
+			<Panel id="Jeff" onmouseover="HoverSound()" onactivate="Select('Jeff');">
+				<Label text="Jeff"/>
+				<Label class="AmountCounters" id="JeffValue" text="0"/>
+			</Panel>
+		</Panel>
+	</ClientUIDialogPanel>
+</root>

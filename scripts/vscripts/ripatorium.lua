@@ -1,6 +1,9 @@
 require 'misc'
 local json = require 'json'
 
+SelectedEnemy = "Headcrab"
+MaxEnemyAmount = 10 --Default max amount of enemies, specify on map start with logic_auto
+
 PanoramaValues = {} 
 a = "Headcrab"
 PanoramaValues[a] = 0
@@ -30,6 +33,12 @@ m = "Reviver"
 PanoramaValues[m] = 0
 n = "Jeff"
 PanoramaValues[n] = 0
+o = "SelectedEnemy"
+PanoramaValues[o] = SelectedEnemy
+p = "SelectedEnemyAmount"
+PanoramaValues[p] = PanoramaValues[SelectedEnemy]
+r = "EnemyMaxAmountValue"
+PanoramaValues[r] = MaxEnemyAmount
 
 function Activate() 
     player = Entities:GetLocalPlayer()
@@ -41,7 +50,63 @@ function Activate()
     end, "PanoramaThink",0 )
 end 
 
-swTemplates = { --NPC templates with specified unique delays
+function SelectEnemy(enemy)
+    print(enemy.." Selected")
+    SelectedEnemy = enemy
+    PanoramaValues["SelectedEnemy"] = SelectedEnemy
+    PanoramaValues["SelectedEnemyAmount"] = PanoramaValues[SelectedEnemy]
+end
+
+function SetMax(value)
+    MaxEnemyAmount = value
+    PanoramaValues["EnemyMaxAmountValue"] = MaxEnemyAmount
+end
+function Add()
+    if PanoramaValues[SelectedEnemy] < MaxEnemyAmount then 
+            PanoramaValues[SelectedEnemy] = PanoramaValues[SelectedEnemy] + 1
+        else 
+            PlayDenySound()
+            print("Can't add to: "..SelectedEnemy)
+        end
+        print(SelectedEnemy.." "..PanoramaValues[SelectedEnemy])
+        PanoramaValues["SelectedEnemyAmount"] = PanoramaValues[SelectedEnemy]
+end
+
+function Subtract()
+     if PanoramaValues[SelectedEnemy] > 0 then 
+            PanoramaValues[SelectedEnemy] = PanoramaValues[SelectedEnemy] - 1
+        else 
+            PlayDenySound()
+            print("Can't Subtract from to: "..SelectedEnemy)
+        end
+        print(SelectedEnemy.." "..PanoramaValues[SelectedEnemy])
+        PanoramaValues["SelectedEnemyAmount"] = PanoramaValues[SelectedEnemy]
+end
+
+--[[function AddTo(enemy)
+     if GetMaxNPCAmonutValues(enemy) and GetMaxAllNPCAmount()}then 
+        PanoramaValues[enemy] = PanoramaValues[enemy] - 1
+    else 
+        PlayDenySound()
+        
+    end
+    PanoramaValues[enemy] = PanoramaValues[enemy] + 1
+end 
+
+function SubtractFrom(enemy)
+    if PanoramaValues[enemy] > 0 then 
+        PanoramaValues[enemy] = PanoramaValues[enemy] - 1
+    else 
+        PlayDenySound()
+        
+    end
+end]]
+
+function PlayDenySound()
+    EntFireByHandle(thisEntity, Entities:FindByName(nil, "ui_selectnegative"), "StartSound", " ")
+end
+
+swTemplates = { --NPC templates 
     ["zombie"] = function() return Entities:FindByName(nil, "zombie_template") end,
     ["armored"] = function() return Entities:FindByName(nil, "armored_template") end,
     ["headcrab"] = function() return Entities:FindByName(nil, "headcrab_template") end,
