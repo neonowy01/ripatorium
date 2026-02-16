@@ -1,0 +1,12 @@
+<root>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/buttons.js" />
+	</scripts>
+	<styles>
+		<include src="s2r://panorama/styles/base_styles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/buttons.css" />
+	</styles>
+	<ClientUIDialogPanel class="RootPanel">
+		<Label text="Begin" onmouseover="Hover()" onactivate="Clicked()"/>
+	</ClientUIDialogPanel>
+</root>

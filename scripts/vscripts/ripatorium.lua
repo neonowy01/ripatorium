@@ -3,6 +3,7 @@ local json = require 'json'
 
 SelectedEnemy = "Headcrab"
 MaxEnemyAmount = 10 --Default max amount of enemies, specify on map start with logic_auto
+bGameFailed = false
 
 PanoramaValues = {} 
 a = "Headcrab"
@@ -43,6 +44,7 @@ PanoramaValues[r] = MaxEnemyAmount
 function Activate() 
     player = Entities:GetLocalPlayer()
     spawnpoints = Entities:FindAllByName("spawn_points")
+    PlayerSpawnpoints = Entities:FindAllByName("PlayerSpawnpoints")
     --thisEntity:SetThink(function() SpawnNPC("grunt") return 5 end, "TestThink", 1)
     thisEntity:SetThink(function() 
         SendToConsole("@panorama_dispatch_event AddStyle(\'"..json.encode(PanoramaValues).." \')") --sending stuff to panorama ui
@@ -50,6 +52,9 @@ function Activate()
     end, "PanoramaThink",0 )
 end 
 
+function TeleportPlayerToRandomSpawn()
+    player:SetOrigin(PlayerSpawnpoints[RandomInt(0,#PlayerSpawnpoints)]:GetOrigin())
+end
 function SelectEnemy(enemy)
     print(enemy.." Selected")
     SelectedEnemy = enemy
@@ -59,7 +64,7 @@ end
 
 function SetMax(value)
     MaxEnemyAmount = value
-    PanoramaValues["EnemyMaxAmountValue"] = MaxEnemyAmount
+    PanoramaValues["EnemyMaxAmountValure"] = MaxEnemyAmount
 end
 function Add()
     if PanoramaValues[SelectedEnemy] < MaxEnemyAmount then 
@@ -83,25 +88,6 @@ function Subtract()
         PanoramaValues["SelectedEnemyAmount"] = PanoramaValues[SelectedEnemy]
 end
 
---[[function AddTo(enemy)
-     if GetMaxNPCAmonutValues(enemy) and GetMaxAllNPCAmount()}then 
-        PanoramaValues[enemy] = PanoramaValues[enemy] - 1
-    else 
-        PlayDenySound()
-        
-    end
-    PanoramaValues[enemy] = PanoramaValues[enemy] + 1
-end 
-
-function SubtractFrom(enemy)
-    if PanoramaValues[enemy] > 0 then 
-        PanoramaValues[enemy] = PanoramaValues[enemy] - 1
-    else 
-        PlayDenySound()
-        
-    end
-end]]
-
 function PlayDenySound()
     EntFireByHandle(thisEntity, Entities:FindByName(nil, "ui_selectnegative"), "StartSound", " ")
 end
@@ -110,6 +96,7 @@ swTemplates = { --NPC templates
     ["zombie"] = function() return Entities:FindByName(nil, "zombie_template") end,
     ["armored"] = function() return Entities:FindByName(nil, "armored_template") end,
     ["headcrab"] = function() return Entities:FindByName(nil, "headcrab_template") end,
+    ["armored_headcrab"] = function() return Entities:FindByName(nil, "armored_headcrab_template") end,
     ["poison"] = function() return Entities:FindByName(nil, "poison_template") end,
     ["antlion"] = function() return Entities:FindByName(nil, "antlion_template")  end,
     ["spitter"] = function() return Entities:FindByName(nil, "spitter_template")  end,
@@ -120,18 +107,28 @@ swTemplates = { --NPC templates
     ["manhack"] = function() return Entities:FindByName(nil, "manhack_template")  end,
 }
 
-function SpawnNPC(NPC)
+function SpawnNPC(NPC, nAmount)
     local template =  swTemplates[NPC]()
-    template:ForceSpawn()
-    local SpawnedEntities = template:GetSpawnedEntities()
-    for  i = #SpawnedEntities, 1, -1
-            do  
-                if SearchForNPC(SpawnedEntities[i]) == true
-                    then
-                    SpawnedEntities[i]:SetOrigin(GetAvailableSpawnpoint()) 
-                    break
-                end
+    local iteration = 0
+    thisEntity:SetThink(function()
+    if iteration == nAmount
+        then 
+            return nil
+        else
+            template:ForceSpawn()
+            iteration = iteration + 1
+            local SpawnedEntities = template:GetSpawnedEntities()
+            for  i = #SpawnedEntities, 1, -1
+                    do  
+                        if SearchForNPC(SpawnedEntities[i]) == true
+                            then
+                            SpawnedEntities[i]:SetOrigin(GetAvailableSpawnpoint()) 
+                            break
+                        end
             end
+            return 0.5
+        end
+    end,UniqueString("SpawnThink", 0))
 end
 
 function GetAvailableSpawnpoint()
@@ -167,10 +164,28 @@ end
 
 
 function SearchForNPC(entity) --This functions searches for the actual npcs inside point_templates GetSpawnedEntities Table
-    if entity:GetName() == "enemy_zombie" or entity:GetName() == "enemy_armored" or entity:GetName() == "enemy_grunt"  or entity:GetName() == "enemy_charger" or entity:GetName() == "enemy_captain" or  entity:GetName() == "enemy_suppressor" or entity:GetName() == "enemy_headcrab" or entity:GetName() == "enemy_poison" or entity:GetName() == "enemy_antlion" or entity:GetName() == "top_enemy_spitter" or entity:GetName() == "grub" or entity:GetName() == "enemy_burrowcrab"
+    if entity:GetName() == "enemy_armored_headcrab" or entity:GetName() ==  "enemy_manhack" or entity:GetName() == "enemy_zombie" or entity:GetName() == "enemy_armored" or entity:GetName() == "enemy_grunt"  or entity:GetName() == "enemy_charger" or entity:GetName() == "enemy_captain" or  entity:GetName() == "enemy_suppressor" or entity:GetName() == "enemy_headcrab" or entity:GetName() == "enemy_poison" or entity:GetName() == "enemy_antlion" or entity:GetName() == "enemy_spitter" or entity:GetName() == "grub" or entity:GetName() == "enemy_burrowcrab"
         then 
                 return true 
         else
                 return false
         end
 end
+
+function QueueSpawns()
+    SpawnNPC("headcrab", PanoramaValues["Headcrab"])
+    SpawnNPC("armored_headcrab", PanoramaValues["ArmoredHeadcrab"])
+    SpawnNPC("poison", PanoramaValues["PoisonHeadcrab"])
+    SpawnNPC("manhack", PanoramaValues["Manhack"])
+
+    SpawnNPC("zombie", PanoramaValues["Zombie"])
+    SpawnNPC("armored", PanoramaValues["ArmoredZombie"])
+    SpawnNPC("antlion", PanoramaValues["Antlion"])
+    SpawnNPC("spitter", PanoramaValues["AntlionWorker"])
+
+    SpawnNPC("grunt", PanoramaValues["CombineGrunt"])
+    SpawnNPC("captain", PanoramaValues["CombineOrdinal"])
+    SpawnNPC("charger", PanoramaValues["CombineCharger"])
+    SpawnNPC("suppressor", PanoramaValues["CombineSuppressor"])
+end
+
