@@ -33,6 +33,7 @@ PanoramaValues[l] = 0
 m = "Reviver"
 PanoramaValues[m] = 0
 n = "Jeff"
+
 PanoramaValues[n] = 0
 o = "SelectedEnemy"
 PanoramaValues[o] = SelectedEnemy
@@ -40,6 +41,13 @@ p = "SelectedEnemyAmount"
 PanoramaValues[p] = PanoramaValues[SelectedEnemy]
 r = "EnemyMaxAmountValue"
 PanoramaValues[r] = MaxEnemyAmount
+
+s = "Killcount"
+PanoramaValues[s] = 0
+t = "EnemySum"
+PanoramaValues[t] = 0
+u = "SetupStage"
+PanoramaValues[u] = true
 
 function Activate() 
     player = Entities:GetLocalPlayer()
@@ -55,6 +63,7 @@ end
 function TeleportPlayerToRandomSpawn()
     player:SetOrigin(PlayerSpawnpoints[RandomInt(0,#PlayerSpawnpoints)]:GetOrigin())
 end
+
 function SelectEnemy(enemy)
     print(enemy.." Selected")
     SelectedEnemy = enemy
@@ -118,17 +127,17 @@ function SpawnNPC(NPC, nAmount)
             template:ForceSpawn()
             iteration = iteration + 1
             local SpawnedEntities = template:GetSpawnedEntities()
-            for  i = #SpawnedEntities, 1, -1
+            for  kebab = #SpawnedEntities, 1, -1
                     do  
-                        if SearchForNPC(SpawnedEntities[i]) == true
+                        if SearchForNPC(SpawnedEntities[kebab]) == true
                             then
-                            SpawnedEntities[i]:SetOrigin(GetAvailableSpawnpoint()) 
+                            SpawnedEntities[kebab]:SetOrigin(GetAvailableSpawnpoint()) 
                             break
                         end
             end
-            return 0.5
+            return 3
         end
-    end,UniqueString("SpawnThink", 0))
+    end,UniqueString("SpawnThink", 2))
 end
 
 function GetAvailableSpawnpoint()
@@ -173,6 +182,10 @@ function SearchForNPC(entity) --This functions searches for the actual npcs insi
 end
 
 function QueueSpawns()
+    PanoramaValues["SetupStage"] = false
+    PanoramaValues["EnemySum"] = PanoramaValues["Headcrab"] + PanoramaValues["ArmoredHeadcrab"] + PanoramaValues["PoisonHeadcrab"] + PanoramaValues["Manhack"] + PanoramaValues["Zombie"] + PanoramaValues["ArmoredZombie"] + PanoramaValues["Antlion"] + PanoramaValues["AntlionWorker"] + PanoramaValues["CombineGrunt"] + PanoramaValues["CombineCharger"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineSuppressor"] + PanoramaValues["Reviver"] + PanoramaValues["Jeff"]
+    print("EnemySum is: "..PanoramaValues["EnemySum"])
+
     SpawnNPC("headcrab", PanoramaValues["Headcrab"])
     SpawnNPC("armored_headcrab", PanoramaValues["ArmoredHeadcrab"])
     SpawnNPC("poison", PanoramaValues["PoisonHeadcrab"])
@@ -189,3 +202,15 @@ function QueueSpawns()
     SpawnNPC("suppressor", PanoramaValues["CombineSuppressor"])
 end
 
+function NpcDied()
+    PanoramaValues["Killcount"] = PanoramaValues["Killcount"] + 1
+
+    if PanoramaValues["Killcount"] == PanoramaValues["EnemySum"]
+        then 
+            Victory()
+    end
+end
+
+function Victory()
+    print("Victory! You win")
+end

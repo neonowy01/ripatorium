@@ -1,0 +1,43 @@
+.RootPanel {
+	width:100%;
+	height:100%;
+	flow-children:down;
+}
+
+.TextPanel {
+	width:100%;
+	height:75%;
+}
+
+.TextPanel > .ProgressValueLabel
+{
+	width:100%;
+	height:100%;
+	text-align: center;
+	font-size:750px;
+	text-overflow:shrink;
+	color:cyan;
+}
+
+.BarPanel {
+	width:100%;
+	height:25%;
+}
+
+.BarPanel > .ProgressBarPanel {
+	width:90%;
+	height:75%;
+	horizontal-align:center;
+	vertical-align: center;
+	background-color: black;
+}
+
+
+.BarPanel > .ProgressBarPanel > .ProgressBar {
+	background-color: cyan;
+	width:100%;
+	height:100%;
+	vertical-align: center;
+	border-right: 25% solid white;
+
+}

@@ -1,0 +1,19 @@
+<root>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/progress_counter.js" />
+	</scripts>
+	<styles>
+		<include src="s2r://panorama/styles/base_styles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/progress_counter.css" />
+	</styles>
+	<ClientUIDialogPanel class="RootPanel">
+		<Panel class="TextPanel">
+			<Label id="Text" class="ProgressValueLabel" text="0/25"/>
+		</Panel>
+		<Panel class="BarPanel">
+			<Panel class="ProgressBarPanel">
+				<Panel class="ProgressBar"/>
+			</Panel>
+		</Panel>
+	</ClientUIDialogPanel>
+</root>
