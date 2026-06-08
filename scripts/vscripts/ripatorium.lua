@@ -58,10 +58,11 @@ function Activate()
         SendToConsole("@panorama_dispatch_event AddStyle(\'"..json.encode(PanoramaValues).." \')") --sending stuff to panorama ui
         return 0.1 
     end, "PanoramaThink",0 )
+    cvar_setf("buddha", 1)
 end 
 
 function TeleportPlayerToRandomSpawn()
-    player:SetOrigin(PlayerSpawnpoints[RandomInt(0,#PlayerSpawnpoints)]:GetOrigin())
+    player:SetOrigin(PlayerSpawnpoints[RandomInt(1,#PlayerSpawnpoints)]:GetOrigin())
 end
 
 function SelectEnemy(enemy)
@@ -182,6 +183,7 @@ function SearchForNPC(entity) --This functions searches for the actual npcs insi
 end
 
 function QueueSpawns()
+    thisEntity:SetThink(function() if player:GetHealth() == 1 then ResetArena(0) return nil end return 0.1 end, "PlayerHealthThink", 0)
     PanoramaValues["SetupStage"] = false
     PanoramaValues["EnemySum"] = PanoramaValues["Headcrab"] + PanoramaValues["ArmoredHeadcrab"] + PanoramaValues["PoisonHeadcrab"] + PanoramaValues["Manhack"] + PanoramaValues["Zombie"] + PanoramaValues["ArmoredZombie"] + PanoramaValues["Antlion"] + PanoramaValues["AntlionWorker"] + PanoramaValues["CombineGrunt"] + PanoramaValues["CombineCharger"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineSuppressor"] + PanoramaValues["Reviver"] + PanoramaValues["Jeff"]
     print("EnemySum is: "..PanoramaValues["EnemySum"])
@@ -207,10 +209,17 @@ function NpcDied()
 
     if PanoramaValues["Killcount"] == PanoramaValues["EnemySum"]
         then 
-            Victory()
+            ResetArena(1)
     end
 end
 
-function Victory()
-    print("Victory! You win")
+function ResetArena(outcome)
+    PanoramaValues["Killcount"] = 0 --Reset progress from previous fight
+    Entities:FindByName(nil, "RestartArena"):Trigger(thisEntity, thisEntity) -- this is where the entire logic is really
+     if outcome == 1 then 
+         print("Victory! You win")
+    else
+        print("Defeat...")
+        
+    end
 end
