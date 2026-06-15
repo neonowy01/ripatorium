@@ -32,10 +32,10 @@
 				<Label text="Reviver"/>
 				<Label class="AmountCounters" id="ReviverValue" text="0"/>
 			</Panel>
-			<Panel id="Jeff" onmouseover="HoverSound()" onactivate="Select('Jeff');">
+			<!--<Panel id="Jeff" onmouseover="HoverSound()" onactivate="Select('Jeff');">
 				<Label text="Jeff"/>
 				<Label class="AmountCounters" id="JeffValue" text="0"/>
-			</Panel>
+			</Panel>-->
 		</Panel>
 	</ClientUIDialogPanel>
 </root>

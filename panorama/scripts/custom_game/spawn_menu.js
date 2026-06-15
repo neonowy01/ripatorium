@@ -102,6 +102,8 @@ function DecodeCommand(command)
    PreviewTitle.text = decoded["SelectedEnemy"]
    var PreviewNpcAmount = $("#PreviewNpcAmount")
    PreviewNpcAmount.text = decoded["SelectedEnemyAmount"]
+   var ArenaCapacity = $("#ArenaCapacityLabel")
+   ArenaCapacity.text = "Arena Capacity: " + decoded["EnemySum"] + "/" + decoded["EnemyMaxAmount"]
    
 }
 

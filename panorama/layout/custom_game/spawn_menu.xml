@@ -13,7 +13,7 @@
 		<Panel class="ContentPanel">
 			<Panel class="SpawnerPanel">
 				<Panel class="SpawnerPanelHeader">
-					<Label text="Arena Capacity: 0/25"/>
+					<Label text="Arena Capacity: 0/25" id="ArenaCapacityLabel"/>
 				</Panel>
 				<Panel id="EmptyPanel" class="EmptyPanel">
 					

@@ -2,7 +2,6 @@ require 'misc'
 local json = require 'json'
 
 SelectedEnemy = "Headcrab"
-MaxEnemyAmount = 10 --Default max amount of enemies, specify on map start with logic_auto
 bGameFailed = false
 
 PanoramaValues = {} 
@@ -39,8 +38,8 @@ o = "SelectedEnemy"
 PanoramaValues[o] = SelectedEnemy
 p = "SelectedEnemyAmount"
 PanoramaValues[p] = PanoramaValues[SelectedEnemy]
-r = "EnemyMaxAmountValue"
-PanoramaValues[r] = MaxEnemyAmount
+r = "EnemyMaxAmount"
+PanoramaValues[r] = 25 --Default max amount of enemies, specify on map start with logic_auto
 
 s = "Killcount"
 PanoramaValues[s] = 0
@@ -72,12 +71,12 @@ function SelectEnemy(enemy)
     PanoramaValues["SelectedEnemyAmount"] = PanoramaValues[SelectedEnemy]
 end
 
-function SetMax(value)
-    MaxEnemyAmount = value
-    PanoramaValues["EnemyMaxAmountValure"] = MaxEnemyAmount
+function SetMaxEnemyAmount(f)
+    PanoramaValues["EnemyMaxAmount"] = f
 end
+
 function Add()
-    if PanoramaValues[SelectedEnemy] < MaxEnemyAmount then 
+    if PanoramaValues["EnemySum"] < PanoramaValues["EnemyMaxAmount"] then 
             PanoramaValues[SelectedEnemy] = PanoramaValues[SelectedEnemy] + 1
         else 
             PlayDenySound()
@@ -85,6 +84,8 @@ function Add()
         end
         print(SelectedEnemy.." "..PanoramaValues[SelectedEnemy])
         PanoramaValues["SelectedEnemyAmount"] = PanoramaValues[SelectedEnemy]
+        PanoramaValues["EnemySum"] = PanoramaValues["Headcrab"] + PanoramaValues["ArmoredHeadcrab"] + PanoramaValues["PoisonHeadcrab"] + PanoramaValues["Manhack"] + PanoramaValues["Zombie"] + PanoramaValues["ArmoredZombie"] + PanoramaValues["Antlion"] + PanoramaValues["AntlionWorker"] + PanoramaValues["CombineGrunt"] + PanoramaValues["CombineCharger"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineSuppressor"] + PanoramaValues["Reviver"] + PanoramaValues["Jeff"]
+        print("EnemySum is: "..PanoramaValues["EnemySum"])
 end
 
 function Subtract()
@@ -96,6 +97,8 @@ function Subtract()
         end
         print(SelectedEnemy.." "..PanoramaValues[SelectedEnemy])
         PanoramaValues["SelectedEnemyAmount"] = PanoramaValues[SelectedEnemy]
+        PanoramaValues["EnemySum"] = PanoramaValues["Headcrab"] + PanoramaValues["ArmoredHeadcrab"] + PanoramaValues["PoisonHeadcrab"] + PanoramaValues["Manhack"] + PanoramaValues["Zombie"] + PanoramaValues["ArmoredZombie"] + PanoramaValues["Antlion"] + PanoramaValues["AntlionWorker"] + PanoramaValues["CombineGrunt"] + PanoramaValues["CombineCharger"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineSuppressor"] + PanoramaValues["Reviver"] + PanoramaValues["Jeff"]
+        print("EnemySum is: "..PanoramaValues["EnemySum"])
 end
 
 function PlayDenySound()
@@ -136,7 +139,7 @@ function SpawnNPC(NPC, nAmount)
                             break
                         end
             end
-            return 3
+            return 2
         end
     end,UniqueString("SpawnThink", 2))
 end
@@ -185,9 +188,8 @@ end
 function QueueSpawns()
     thisEntity:SetThink(function() if player:GetHealth() == 1 then ResetArena(0) return nil end return 0.1 end, "PlayerHealthThink", 0)
     PanoramaValues["SetupStage"] = false
-    PanoramaValues["EnemySum"] = PanoramaValues["Headcrab"] + PanoramaValues["ArmoredHeadcrab"] + PanoramaValues["PoisonHeadcrab"] + PanoramaValues["Manhack"] + PanoramaValues["Zombie"] + PanoramaValues["ArmoredZombie"] + PanoramaValues["Antlion"] + PanoramaValues["AntlionWorker"] + PanoramaValues["CombineGrunt"] + PanoramaValues["CombineCharger"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineSuppressor"] + PanoramaValues["Reviver"] + PanoramaValues["Jeff"]
+    
     print("EnemySum is: "..PanoramaValues["EnemySum"])
-
     SpawnNPC("headcrab", PanoramaValues["Headcrab"])
     SpawnNPC("armored_headcrab", PanoramaValues["ArmoredHeadcrab"])
     SpawnNPC("poison", PanoramaValues["PoisonHeadcrab"])
@@ -214,6 +216,7 @@ function NpcDied()
 end
 
 function ResetArena(outcome)
+    PanoramaValues["SetupStage"] = true
     PanoramaValues["Killcount"] = 0 --Reset progress from previous fight
     Entities:FindByName(nil, "RestartArena"):Trigger(thisEntity, thisEntity) -- this is where the entire logic is really
      if outcome == 1 then 
@@ -223,3 +226,4 @@ function ResetArena(outcome)
         
     end
 end
+

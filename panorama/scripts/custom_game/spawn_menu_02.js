@@ -83,8 +83,8 @@ function DecodeCommand(command)
    var ReviverValue = $("#ReviverValue")
    ReviverValue.text = decoded["Reviver"]
 
-   var JeffValue = $("#JeffValue")
-   JeffValue.text = decoded["Jeff"]
+   /*var JeffValue = $("#JeffValue")
+   JeffValue.text = decoded["Jeff"]*/
    
 }
 
