@@ -80,23 +80,25 @@
 }
 
 .PreviewPanel > .PreviewTitle {
-	font-size:60px;
+	font-size:55px;
 	font-weight:bold;
 	text-align:center;
-	width:100%;
-	height:6%;
+	width:80%;
+	height:12%;
+	text-overflow: clip;
+	horizontal-align:center;
 }
 
 .PreviewPanel > .PreviewImagePanel {
 	background-color:pink;
 	width:100%;
-	height:69%;
+	height:63%;
 }
 
 .PreviewImagePanel Image {
 	vertical-align: center;
 	horizontal-align: center;
-	height:65%;
+	height:70%;
 	padding:10%;
 }
 

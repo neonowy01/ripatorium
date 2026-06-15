@@ -98,12 +98,32 @@ function DecodeCommand(command)
 {
    var decoded = JSON.parse(command);
 
-   var PreviewTitle = $("#PreviewTitle")
-   PreviewTitle.text = decoded["SelectedEnemy"]
    var PreviewNpcAmount = $("#PreviewNpcAmount")
    PreviewNpcAmount.text = decoded["SelectedEnemyAmount"]
    var ArenaCapacity = $("#ArenaCapacityLabel")
    ArenaCapacity.text = "Arena Capacity: " + decoded["EnemySum"] + "/" + decoded["EnemyMaxAmount"]
+
+   var PreviewTitle = $("#PreviewTitle")
+   switch(decoded["SelectedEnemy"])
+   {
+     case "Headcrab": PreviewTitle.text = "Headcrab"; break;
+     case "ArmoredHeadcrab": PreviewTitle.text = "Armored Headcrab"; break;
+     case "PoisonHeadcrab": PreviewTitle.text = "Poison Headcrab"; break;
+     case "FastHeadcrab": PreviewTitle.text = "Fast Headcrab"; break;
+     case "Manhack": PreviewTitle.text = "Manhack"; break;
+     case "Zombie": PreviewTitle.text = "Zombie"; break;
+     case "ArmoredZombie": PreviewTitle.text = "Armored Zombie"; break;
+     case "Antlion": PreviewTitle.text = "Antlion"; break;
+     case "AntlionWorker": PreviewTitle.text = "Antlion Worker"; break;
+     case "CombineGrunt": PreviewTitle.text = "Combine Grunt"; break;
+     case "CombineCharger": PreviewTitle.text = "Combine Charger"; break;
+     case "CombineOrdinal": PreviewTitle.text = "Combine Ordinal"; break;
+     case "CombineSuppressor": PreviewTitle.text = "Combine Suppressor"; break;
+     case "Reviver": PreviewTitle.text = "Reviver"; break;
+     case "Jeff": PreviewTitle.text = "Jeff"; break;
+     default: PreviewTitle.text = "Preview Title"; break;
+
+   }
    
 }
 
