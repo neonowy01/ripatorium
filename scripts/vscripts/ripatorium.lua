@@ -186,6 +186,7 @@ function SearchForNPC(entity) --This functions searches for the actual npcs insi
 end
 
 function QueueSpawns()
+    if PanoramaValues["EnemySum"] > 0 then
     thisEntity:SetThink(function() if player:GetHealth() == 1 then ResetArena(0) return nil end return 0.1 end, "PlayerHealthThink", 0)
     PanoramaValues["SetupStage"] = false
     
@@ -204,6 +205,7 @@ function QueueSpawns()
     SpawnNPC("captain", PanoramaValues["CombineOrdinal"])
     SpawnNPC("charger", PanoramaValues["CombineCharger"])
     SpawnNPC("suppressor", PanoramaValues["CombineSuppressor"])
+    end
 end
 
 function NpcDied()

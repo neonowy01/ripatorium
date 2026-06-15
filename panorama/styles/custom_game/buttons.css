@@ -10,3 +10,10 @@ Label {
 	text-align: center;
 	font-size:100px;
 }
+
+.RootPanel:hover {
+	background-color:red;
+	color:white;
+}
+
+
