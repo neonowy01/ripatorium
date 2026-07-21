@@ -104,23 +104,24 @@ function DecodeCommand(command)
    ArenaCapacity.text = "Arena Capacity: " + decoded["EnemySum"] + "/" + decoded["EnemyMaxAmount"]
 
    var PreviewTitle = $("#PreviewTitle")
+   var PreviewImage = $("#PreviewImage")
    switch(decoded["SelectedEnemy"])
    {
-     case "Headcrab": PreviewTitle.text = "Headcrab"; break;
-     case "ArmoredHeadcrab": PreviewTitle.text = "Armored Headcrab"; break;
-     case "PoisonHeadcrab": PreviewTitle.text = "Poison Headcrab"; break;
-     case "FastHeadcrab": PreviewTitle.text = "Fast Headcrab"; break;
-     case "Manhack": PreviewTitle.text = "Manhack"; break;
-     case "Zombie": PreviewTitle.text = "Zombie"; break;
-     case "ArmoredZombie": PreviewTitle.text = "Armored Zombie"; break;
-     case "Antlion": PreviewTitle.text = "Antlion"; break;
-     case "AntlionWorker": PreviewTitle.text = "Antlion Worker"; break;
-     case "CombineGrunt": PreviewTitle.text = "Combine Grunt"; break;
-     case "CombineCharger": PreviewTitle.text = "Combine Charger"; break;
-     case "CombineOrdinal": PreviewTitle.text = "Combine Ordinal"; break;
-     case "CombineSuppressor": PreviewTitle.text = "Combine Suppressor"; break;
-     case "Reviver": PreviewTitle.text = "Reviver"; break;
-     case "Jeff": PreviewTitle.text = "Jeff"; break;
+     case "Headcrab": PreviewTitle.text = "Headcrab"; PreviewImage.SetImage("file://{images}/custom_game/placeholders/headcrab_color.png"); break;
+     case "ArmoredHeadcrab": PreviewTitle.text = "Armored Headcrab"; PreviewImage.SetImage("file://{images}/custom_game/placeholders/headcraba_color.png");  break;
+     case "PoisonHeadcrab": PreviewTitle.text = "Poison Headcrab"; PreviewImage.SetImage("file://{images}/custom_game/placeholders/poison_color.png");  break;
+     case "FastHeadcrab": PreviewTitle.text = "Fast Headcrab"; PreviewImage.SetImage("file://{images}/custom_game/placeholder.png"); break;
+     case "Manhack": PreviewTitle.text = "Manhack";  PreviewImage.SetImage("file://{images}/custom_game/placeholders/manhack_color.png"); break;
+     case "Zombie": PreviewTitle.text = "Zombie";  PreviewImage.SetImage("file://{images}/custom_game/placeholders/zombie_color.png"); break;
+     case "ArmoredZombie": PreviewTitle.text = "Armored Zombie";  PreviewImage.SetImage("file://{images}/custom_game/placeholders/zombiea_color.png"); break;
+     case "Antlion": PreviewTitle.text = "Antlion";  PreviewImage.SetImage("file://{images}/custom_game/placeholders/antlion_color.png"); break;
+     case "AntlionWorker": PreviewTitle.text = "Antlion Worker";  PreviewImage.SetImage("file://{images}/custom_game/placeholders/worker_color.png"); break;
+     case "CombineGrunt": PreviewTitle.text = "Combine Grunt";  PreviewImage.SetImage("file://{images}/custom_game/placeholders/grunt_color.png");break;
+     case "CombineCharger": PreviewTitle.text = "Combine Charger";  PreviewImage.SetImage("file://{images}/custom_game/placeholders/charger_color.png");break;
+     case "CombineOrdinal": PreviewTitle.text = "Combine Ordinal";  PreviewImage.SetImage("file://{images}/custom_game/placeholders/captain_color.png");break;
+     case "CombineSuppressor": PreviewTitle.text = "Combine Suppressor";  PreviewImage.SetImage("file://{images}/custom_game/placeholders/supp_color.png"); break;
+     case "Reviver": PreviewTitle.text = "Reviver";  PreviewImage.SetImage("file://{images}/custom_game/placeholders/reviver_color.png");break;
+     case "Jeff": PreviewTitle.text = "Jeff"; PreviewImage.SetImage("file://{images}/custom_game/placeholder.png"); break;
      default: PreviewTitle.text = "Preview Title"; break;
 
    }

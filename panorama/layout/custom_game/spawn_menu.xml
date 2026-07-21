@@ -22,7 +22,7 @@
 			<Panel class="PreviewPanel">
 				<Label class="PreviewTitle" text="Preview Title" id="PreviewTitle"/>
 				<Panel class="PreviewImagePanel">
-					<Image src="file://{images}/custom_game/placeholder.png"/>
+					<Image id="PreviewImage" src="file://{images}/custom_game/placeholder_color.png"/>
 				</Panel>
 				<Panel class="EditButtonsPanel">
 					<Panel class="EditButton Subtract" onmouseover="HoverSound()" onactivate="Subtract()">
