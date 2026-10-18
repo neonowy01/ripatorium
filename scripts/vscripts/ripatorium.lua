@@ -84,7 +84,7 @@ function Add()
         end
         print(SelectedEnemy.." "..PanoramaValues[SelectedEnemy])
         PanoramaValues["SelectedEnemyAmount"] = PanoramaValues[SelectedEnemy]
-        PanoramaValues["EnemySum"] = PanoramaValues["Headcrab"] + PanoramaValues["ArmoredHeadcrab"] + PanoramaValues["PoisonHeadcrab"] + PanoramaValues["Manhack"] + PanoramaValues["Zombie"] + PanoramaValues["ArmoredZombie"] + PanoramaValues["Antlion"] + PanoramaValues["AntlionWorker"] + PanoramaValues["CombineGrunt"] + PanoramaValues["CombineCharger"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineSuppressor"] + PanoramaValues["Reviver"] + PanoramaValues["Jeff"]
+        PanoramaValues["EnemySum"] = PanoramaValues["Headcrab"] + PanoramaValues["ArmoredHeadcrab"] + PanoramaValues["PoisonHeadcrab"] + PanoramaValues["Manhack"] + PanoramaValues["Zombie"] + PanoramaValues["ArmoredZombie"] + PanoramaValues["Antlion"] + PanoramaValues["AntlionWorker"] + PanoramaValues["CombineGrunt"] + PanoramaValues["CombineCharger"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineSuppressor"] + PanoramaValues["Reviver"] + PanoramaValues["Jeff"]
         print("EnemySum is: "..PanoramaValues["EnemySum"])
 end
 
@@ -165,10 +165,10 @@ function TraceTo(target)
 
         if traceTable.hit 
         then
-            DebugDrawLine(traceTable.startpos, traceTable.pos, 0, 255, 0, true, 5)
+            --DebugDrawLine(traceTable.startpos, traceTable.pos, 0, 255, 0, true, 5)
             return true
         else
-            DebugDrawLine(traceTable.startpos, traceTable.endpos, 255, 0, 0, true, 5)
+           -- DebugDrawLine(traceTable.startpos, traceTable.endpos, 255, 0, 0, true, 5)
             return nil
         end
 end
