@@ -51,7 +51,7 @@ PanoramaValues[u] = true
 function Activate() 
     player = Entities:GetLocalPlayer()
     spawnpoints = Entities:FindAllByName("spawn_points")
-    PlayerSpawnpoints = Entities:FindAllByName("PlayerSpawnpoints")
+    PlayerSpawnpoints = Entities:FindAllByName("PlayerSpawnpoints*")
     --thisEntity:SetThink(function() SpawnNPC("grunt") return 5 end, "TestThink", 1)
     thisEntity:SetThink(function() 
         SendToConsole("@panorama_dispatch_event AddStyle(\'"..json.encode(PanoramaValues).." \')") --sending stuff to panorama ui
@@ -61,7 +61,10 @@ function Activate()
 end 
 
 function TeleportPlayerToRandomSpawn()
-    player:SetOrigin(PlayerSpawnpoints[RandomInt(1,#PlayerSpawnpoints)]:GetOrigin())
+    local Int = RandomInt(1,#PlayerSpawnpoints)
+    print(PlayerSpawnpoints[Int]:GetName())
+    EntFireByHandle(thisEntity, PlayerSpawnpoints[Int], "Teleport", " ")
+    --player:SetOrigin(PlayerSpawnpoints[RandomInt(1,#PlayerSpawnpoints)]:GetOrigin())
 end
 
 function SelectEnemy(enemy)
@@ -100,6 +103,18 @@ function Subtract()
         PanoramaValues["EnemySum"] = PanoramaValues["Headcrab"] + PanoramaValues["ArmoredHeadcrab"] + PanoramaValues["PoisonHeadcrab"] + PanoramaValues["Manhack"] + PanoramaValues["Zombie"] + PanoramaValues["ArmoredZombie"] + PanoramaValues["Antlion"] + PanoramaValues["AntlionWorker"] + PanoramaValues["CombineGrunt"] + PanoramaValues["CombineCharger"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineSuppressor"] + PanoramaValues["Reviver"] + PanoramaValues["Jeff"]
         print("EnemySum is: "..PanoramaValues["EnemySum"])
 end
+
+--[[function ResetMenu()
+    for  loop = 1, 14, 1 do
+        PanoramaValues[loop] = 0
+    end
+end]]
+
+--[[function UpdateEnemySum()
+        PanoramaValues["SelectedEnemyAmount"] = PanoramaValues[SelectedEnemy]
+        PanoramaValues["EnemySum"] = PanoramaValues["Headcrab"] + PanoramaValues["ArmoredHeadcrab"] + PanoramaValues["PoisonHeadcrab"] + PanoramaValues["Manhack"] + PanoramaValues["Zombie"] + PanoramaValues["ArmoredZombie"] + PanoramaValues["Antlion"] + PanoramaValues["AntlionWorker"] + PanoramaValues["CombineGrunt"] + PanoramaValues["CombineCharger"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineSuppressor"] + PanoramaValues["Reviver"] + PanoramaValues["Jeff"]
+        print("EnemySum is: "..PanoramaValues["EnemySum"])
+end]]
 
 function PlayDenySound()
     EntFireByHandle(thisEntity, Entities:FindByName(nil, "ui_selectnegative"), "StartSound", " ")

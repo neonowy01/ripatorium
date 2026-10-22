@@ -7,6 +7,6 @@
 		<include src="file://{resources}/styles/custom_game/buttons.css" />
 	</styles>
 	<ClientUIDialogPanel class="RootPanel">
-		<Label text="Reset" onmouseover="Hover()" onactivate="ClickedReset()"/>
+		<Label text="Reset" onmouseover="Hover()" onactivate="Clicked()"/>
 	</ClientUIDialogPanel>
 </root>
