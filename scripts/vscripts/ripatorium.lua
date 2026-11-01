@@ -4,49 +4,32 @@ local json = require 'json'
 SelectedEnemy = "Headcrab"
 bGameFailed = false
 
-PanoramaValues = {} 
-a = "Headcrab"
-PanoramaValues[a] = 0
-b = "ArmoredHeadcrab"
-PanoramaValues[b] = 0
-c = "PoisonHeadcrab"
-PanoramaValues[c] = 0
-d = "Manhack"
-PanoramaValues[d] = 0
-e = "Zombie"
-PanoramaValues[e] = 0
-f = "ArmoredZombie"
-PanoramaValues[f] = 0
-g = "Antlion"
-PanoramaValues[g] = 0
-h = "AntlionWorker"
-PanoramaValues[h] = 0
-i = "CombineGrunt"
-PanoramaValues[i] = 0
-j = "CombineCharger"
-PanoramaValues[j] = 0
-k = "CombineOrdinal"
-PanoramaValues[k] = 0
-l = "CombineSuppressor"
-PanoramaValues[l] = 0
-m = "Reviver"
-PanoramaValues[m] = 0
-n = "Jeff"
+PanoramaValues = {
+    Headcrab = 0,
+    ArmoredHeadcrab = 0,
+    PoisonHeadcrab = 0,
+    Manhack = 0,
+    Zombie = 0,
+    ArmoredZombie = 0,
+    Antlion = 0,
+    AntlionWorker = 0,
+    CombineGrunt = 0,
+    CombineCharger = 0,
+    CombineOrdinal = 0,
+    CombineSuppressor = 0,
+    Reviver = 0,
+    Jeff = 0,
 
-PanoramaValues[n] = 0
-o = "SelectedEnemy"
-PanoramaValues[o] = SelectedEnemy
-p = "SelectedEnemyAmount"
-PanoramaValues[p] = PanoramaValues[SelectedEnemy]
-r = "EnemyMaxAmount"
-PanoramaValues[r] = 25 --Default max amount of enemies, specify on map start with logic_auto
+    SelectedEnemy = SelectedEnemy,
+    SelectedEnemyAmount = 0,
+    EnemyMaxAmount = 25,
+    Killcount = 0,
+    EnemySum = 0,
+    SetupStage = true
+}
 
-s = "Killcount"
-PanoramaValues[s] = 0
-t = "EnemySum"
-PanoramaValues[t] = 0
-u = "SetupStage"
-PanoramaValues[u] = true
+PanoramaValues.SelectedEnemyAmount =
+    PanoramaValues[SelectedEnemy]
 
 function Activate() 
     player = Entities:GetLocalPlayer()
@@ -100,21 +83,9 @@ function Subtract()
         end
         print(SelectedEnemy.." "..PanoramaValues[SelectedEnemy])
         PanoramaValues["SelectedEnemyAmount"] = PanoramaValues[SelectedEnemy]
-        PanoramaValues["EnemySum"] = PanoramaValues["Headcrab"] + PanoramaValues["ArmoredHeadcrab"] + PanoramaValues["PoisonHeadcrab"] + PanoramaValues["Manhack"] + PanoramaValues["Zombie"] + PanoramaValues["ArmoredZombie"] + PanoramaValues["Antlion"] + PanoramaValues["AntlionWorker"] + PanoramaValues["CombineGrunt"] + PanoramaValues["CombineCharger"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineSuppressor"] + PanoramaValues["Reviver"] + PanoramaValues["Jeff"]
+        PanoramaValues["EnemySum"] = PanoramaValues["Headcrab"] + PanoramaValues["ArmoredHeadcrab"] + PanoramaValues["PoisonHeadcrab"] + PanoramaValues["Manhack"] + PanoramaValues["Zombie"] + PanoramaValues["ArmoredZombie"] + PanoramaValues["Antlion"] + PanoramaValues["AntlionWorker"] + PanoramaValues["CombineGrunt"] + PanoramaValues["CombineCharger"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineSuppressor"] + PanoramaValues["Reviver"] + PanoramaValues["Jeff"]
         print("EnemySum is: "..PanoramaValues["EnemySum"])
 end
-
---[[function ResetMenu()
-    for  loop = 1, 14, 1 do
-        PanoramaValues[loop] = 0
-    end
-end]]
-
---[[function UpdateEnemySum()
-        PanoramaValues["SelectedEnemyAmount"] = PanoramaValues[SelectedEnemy]
-        PanoramaValues["EnemySum"] = PanoramaValues["Headcrab"] + PanoramaValues["ArmoredHeadcrab"] + PanoramaValues["PoisonHeadcrab"] + PanoramaValues["Manhack"] + PanoramaValues["Zombie"] + PanoramaValues["ArmoredZombie"] + PanoramaValues["Antlion"] + PanoramaValues["AntlionWorker"] + PanoramaValues["CombineGrunt"] + PanoramaValues["CombineCharger"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineOrdinal"] + PanoramaValues["CombineSuppressor"] + PanoramaValues["Reviver"] + PanoramaValues["Jeff"]
-        print("EnemySum is: "..PanoramaValues["EnemySum"])
-end]]
 
 function PlayDenySound()
     EntFireByHandle(thisEntity, Entities:FindByName(nil, "ui_selectnegative"), "StartSound", " ")
@@ -244,3 +215,118 @@ function ResetArena(outcome)
     end
 end
 
+function ResetEnemyValues()
+    local enemies = {
+        "Headcrab",
+        "ArmoredHeadcrab",
+        "PoisonHeadcrab",
+        "Manhack",
+        "Zombie",
+        "ArmoredZombie",
+        "Antlion",
+        "AntlionWorker",
+        "CombineGrunt",
+        "CombineCharger",
+        "CombineOrdinal",
+        "CombineSuppressor",
+        "Reviver",
+        "Jeff"
+    }
+
+    for _, enemy in ipairs(enemies) do
+        PanoramaValues[enemy] = 0
+    end
+
+    PanoramaValues["SelectedEnemyAmount"] = 0
+    PanoramaValues["EnemySum"] = 0
+    PanoramaValues["Killcount"] = 0
+end
+
+RandomTemplates = {
+    Mix = {
+        "Headcrab",
+        "ArmoredHeadcrab",
+        "PoisonHeadcrab",
+        "Manhack",
+        "Zombie",
+        "ArmoredZombie",
+        "Antlion",
+        "AntlionWorker",
+        "CombineGrunt",
+        "CombineCharger",
+        "CombineOrdinal",
+        "CombineSuppressor",
+        "Reviver",
+        --"Jeff"
+    },
+
+    Combine = {
+        "CombineGrunt",
+        "CombineCharger",
+        "CombineOrdinal",
+        "CombineSuppressor",
+        "Manhack"
+    },
+
+    Xombies = {
+        "Headcrab",
+        "ArmoredHeadcrab",
+        "PoisonHeadcrab",
+        "Zombie",
+        "ArmoredZombie"
+    },
+
+    Xen = {
+        "Headcrab",
+        "ArmoredHeadcrab",
+        "PoisonHeadcrab",
+        "Reviver",
+        "Antlion",
+        "AntlionWorker"
+    }--[[,
+    Revive = {
+        "Zombie",
+        "ArmoredZombie",
+        "Reviver"
+    }]]
+}
+
+function RandomizeEnemies()
+
+    local modes = {}
+
+    for mode, _ in pairs(RandomTemplates) do
+        table.insert(modes, mode)
+    end
+
+    local randomMode = modes[RandomInt(1, #modes)]
+
+    local template = RandomTemplates[randomMode]
+
+    -- 50% of MaxAmount is minimal amount of randomized npcs.
+    local targetAmount = RandomInt(math.ceil(PanoramaValues["EnemyMaxAmount"] * 0.5), PanoramaValues["EnemyMaxAmount"])
+
+    ResetEnemyValues()
+
+    --Randomizing
+    for i = 1, targetAmount do
+
+        local randomIndex = RandomInt(1, #template)
+        local randomEnemy = template[randomIndex]
+
+        PanoramaValues[randomEnemy] =
+            PanoramaValues[randomEnemy] + 1
+
+    end
+
+    PanoramaValues["EnemySum"] = targetAmount
+
+    PanoramaValues["SelectedEnemyAmount"] =
+        PanoramaValues[SelectedEnemy]
+
+    PanoramaValues["SelectedEnemy"] = SelectedEnemy
+
+    print("Randomized mode: " .. randomMode)
+    print("Generated NPCs: " .. targetAmount)
+
+end
