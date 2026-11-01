@@ -104,6 +104,7 @@ swTemplates = { --NPC templates
     ["charger"] = function() return Entities:FindByName(nil, "charger_template")  end,
     ["suppressor"] = function() return Entities:FindByName(nil, "suppressor_template")  end,
     ["manhack"] = function() return Entities:FindByName(nil, "manhack_template")  end,
+    ["reviver"] = function() return Entities:FindByName(nil, "reviver_template")  end
 }
 
 function SpawnNPC(NPC, nAmount)
@@ -163,7 +164,7 @@ end
 
 
 function SearchForNPC(entity) --This functions searches for the actual npcs inside point_templates GetSpawnedEntities Table
-    if entity:GetName() == "enemy_armored_headcrab" or entity:GetName() ==  "enemy_manhack" or entity:GetName() == "enemy_zombie" or entity:GetName() == "enemy_armored" or entity:GetName() == "enemy_grunt"  or entity:GetName() == "enemy_charger" or entity:GetName() == "enemy_captain" or  entity:GetName() == "enemy_suppressor" or entity:GetName() == "enemy_headcrab" or entity:GetName() == "enemy_poison" or entity:GetName() == "enemy_antlion" or entity:GetName() == "enemy_spitter" or entity:GetName() == "grub" or entity:GetName() == "enemy_burrowcrab"
+    if entity:GetName() == "enemy_armored_headcrab" or entity:GetName() ==  "enemy_manhack" or entity:GetName() == "enemy_zombie" or entity:GetName() == "enemy_armored" or entity:GetName() == "enemy_grunt"  or entity:GetName() == "enemy_charger" or entity:GetName() == "enemy_captain" or  entity:GetName() == "enemy_suppressor" or entity:GetName() == "enemy_headcrab" or entity:GetName() == "enemy_poison" or entity:GetName() == "enemy_antlion" or entity:GetName() == "enemy_spitter" or entity:GetName() == "grub" or entity:GetName() == "enemy_reviver" or entity:GetName() == "enemy_burrowcrab"
         then 
                 return true 
         else
@@ -191,6 +192,8 @@ function QueueSpawns()
     SpawnNPC("captain", PanoramaValues["CombineOrdinal"])
     SpawnNPC("charger", PanoramaValues["CombineCharger"])
     SpawnNPC("suppressor", PanoramaValues["CombineSuppressor"])
+
+    SpawnNPC("reviver", PanoramaValues["Reviver"])
     end
 end
 
@@ -329,4 +332,11 @@ function RandomizeEnemies()
     print("Randomized mode: " .. randomMode)
     print("Generated NPCs: " .. targetAmount)
 
+    for _, enemy in ipairs(RandomTemplates[randomMode]) do
+    local amount = PanoramaValues[enemy]
+
+    if amount > 0 then
+        print(enemy .. ": " .. amount)
+    end
+end
 end
